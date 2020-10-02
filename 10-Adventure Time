@@ -1,0 +1,25 @@
+# game.time is the time that has passed in the game
+game.spawnPlayerXY("guardian", 10, 35)
+game.addSurviveGoal()
+game.addDefeatGoal(5)
+
+def onSpawn(event):
+    while True:
+        unit = event.target
+        enemy = unit.findNearestEnemy()
+        if enemy:
+            unit.attack(enemy)
+
+game.setActionFor("munchkin", "spawn", onSpawn)
+
+# game.time starts at zero, and counts upward in seconds
+spawnTime = 0
+while True:
+    # spawnTime is the time we want to spawn at
+    if game.time > spawnTime:
+        pass
+        # Spawn a "munchkin" at 60, 35
+        game.spawnXY("munchkin", 60, 35)
+        # Set spawnTime equal to game.time + 2
+        spawnTime = game.time + 2
+        # so an enemy will spawn every 2 seconds.
